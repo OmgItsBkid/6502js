@@ -7,21 +7,17 @@
   <body>
 
     <div class="widget">
-      <div class="buttons">
-        <input type="button" value="Assemble" class="assembleButton" />
-        <input type="button" value="Run" class="runButton" />
-        <input type="button" value="Reset" class="resetButton" />
-        <input type="button" value="Hexdump" class="hexdumpButton" />
-        <input type="button" value="Disassemble" class="disassembleButton" />
-        <input type="button" value="Binary" class="binaryButton"/>
-        <input type="button" value="Download source" class="sourceButton"/>
-        <input type="button" value="Notes" class="notesButton" />
+	<div class="monitorControls">
+        <label for="monitoring">Monitor</label>
+
+        <label for="start">Start: $</label>
+        <input type="text" value="0" class="start" name="start" />
+        <label for="length">Length: $</label>
+        <input type="text" value="ff" class="length" name="length" />
       </div>
-
-      <textarea class="code"></textarea>
-
-          <canvas class="screen" width="320" height="320"></canvas>
-
+      <div class="monitor"><pre><code></code></pre></div>
+	  <canvas class="screen" width="320" height="320"></canvas>
+	  <div class="messages"><pre><code></code></pre></div>
       <div class="debugger">
         <input type="checkbox" class="debug" name="debug" />
         <label for="debug">Debugger</label>
@@ -31,19 +27,17 @@
           <input type="button" value="Jump to ..." class="gotoButton" />
         </div>
       </div>
-
-      <div class="monitorControls">
-        <label for="monitoring">Monitor</label>
-        <input type="checkbox" class="monitoring" name="monitoring" />
-
-        <label for="start">Start: $</label>
-        <input type="text" value="0" class="start" name="start" />
-        <label for="length">Length: $</label>
-        <input type="text" value="ff" class="length" name="length" />
+	    <div class="buttons">
+        <input type="button" value="Assemble" class="assembleButton" />
+        <input type="button" value="Run" class="runButton" />
+        <input type="button" value="Reset" class="resetButton" />
+        <input type="button" value="Hexdump" class="hexdumpButton" />
+        <input type="button" value="Disassemble" class="disassembleButton" />
+        <input type="button" value="Binary" class="binaryButton"/>
+        <input type="button" value="Download source" class="sourceButton"/>
+        <input type="button" value="Notes" class="notesButton" />
       </div>
-      <div class="monitor"><pre><code></code></pre></div>
-      <div class="messages"><pre><code></code></pre></div>
-
+      <textarea class="code"></textarea>
       <div class="notes" style="display: none">Notes:
 
 Memory location $fe contains a new random byte on every instruction.

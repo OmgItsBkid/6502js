@@ -1,5 +1,5 @@
 .widget {
-  width: 900px;
+  width: 1485px;
   margin: 12px;
   font-size: 12px;
   line-height: 1.5;
@@ -18,19 +18,22 @@
   padding: 0;
   background: inherit;
   border: none;
-  font-size: 11px;
+  font-size: 12px;
+}
+
+.monitor pre {
+  font-size: 17px;
 }
 
 .code {
-  margin: 0 0 6px 0;
+  margin: 2px 5px 0 0;
   padding: 6px;
   border: 1px solid black;
-  width: 560px;
-  height: 450px;
+  width: 600px;
+  height: 880px;
   font-family: monospace;
-  font-size: 11px;
+  font-size: 15px;
   overflow: auto;
-  float: left;
 }
 
 .screen {
@@ -38,14 +41,16 @@
 }
 
 .debugger {
+  margin-top: -125px;
   border: 1px black solid;
-  margin-top: 6px;
   padding: 3px;
   padding-top: 8px;
-  height: 125px;
-  width: 310px;
+  height: 185px;
+  width: 312px;
+  font-size: 14px;
   text-align: center;
   float: right;
+  clear: right;
 }
 
 .minidebugger {
@@ -53,14 +58,16 @@
   margin-top: 6px;
   padding: 0;
   font-family: monospace;
-  font-size: 11px;
+  font-size: 20px;
 }
 
 .monitorControls {
-  width: 587px;
-  clear: both;
+  width: 425px;
   margin-bottom: 10px;
+  margin-left: 120px;
   padding: 0;
+  float: left;
+  font-size: 14px;
 }
 
 .monitorControls input {
@@ -68,25 +75,27 @@
 }
 
 .monitor {
-  margin: 10px 0;
   padding: 6px;
   border: 1px solid #999;
   background-color: #ddd;
-  width: 587px;
-  height: 100px;
+  width: 525px;
+  height: 437px;
   overflow: auto;
-  display: none;
+  float: left;
+  clear: both;
 }
 
 .messages {
-  margin: 0;
+  margin: 5px 5px 0 0;
   padding: 6px;
   border: 1px solid #999;
   background-color: #eee;
   overflow: auto;
-  width: 587px;
-  height: 100px;
+  width: 525px;
+  height: 424px;
   text-align: left;
   font-size: 11px;
   color: #444;
+  float: left;
+  clear: both;
 }
