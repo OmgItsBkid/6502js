@@ -46,10 +46,7 @@ function SimulatorWidget(node) {
         simulator.stopDebugger();
       }
     });
-    $node.find('.monitoring').change(function () {
-      ui.toggleMonitor();
-      simulator.toggleMonitor();
-    });
+    simulator.toggleMonitor();
     $node.find('.start, .length').blur(simulator.handleMonitorRangeChange);
     $node.find('.stepButton').click(simulator.debugExec);
     $node.find('.gotoButton').click(simulator.gotoAddr);
