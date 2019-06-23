@@ -19,6 +19,7 @@ function SimulatorWidget(node) {
   var labels = Labels();
   var simulator = Simulator();
   var assembler = Assembler();
+  var enableGrid = 0;
 
   function initialize() {
     stripText();
@@ -46,6 +47,14 @@ function SimulatorWidget(node) {
         simulator.stopDebugger();
       }
     });
+	$node.find('.grid').change(function () {
+      var grid = $(this).is(':checked');
+      if (grid) {
+        ui.gridOn();
+      } else {
+        ui.gridOff();
+      }
+    });
     simulator.toggleMonitor();
     $node.find('.start, .length').blur(simulator.handleMonitorRangeChange);
     $node.find('.stepButton').click(simulator.debugExec);
@@ -53,8 +62,8 @@ function SimulatorWidget(node) {
     $node.find('.notesButton').click(ui.showNotes);    
     var editor = $node.find('.code');
 
-    //editor.on('keypress input', simulator.stop);
-    //editor.on('keypress input', ui.initialize);
+    editor.on('keypress input', simulator.stop);
+    editor.on('keypress input', ui.initialize);
     editor.keydown(ui.captureTabInEditor);
 
     $(document).keypress(memory.storeKeypress);
@@ -161,6 +170,16 @@ function SimulatorWidget(node) {
       $node.find('.messages code').html($node.find('.notes').html());
     }
 
+	function gridOn() {
+	  enableGrid = 1;
+	  simulator.reset();
+	}
+	
+	function gridOff() {
+	  enableGrid = 0;
+	  simulator.reset();
+	}
+	
     function captureTabInEditor(e) {
       // Tab Key
       if(e.keyCode === 9) {
@@ -187,6 +206,8 @@ function SimulatorWidget(node) {
       assembleSuccess: assembleSuccess,
       debugOn: debugOn,
       debugOff: debugOff,
+	  gridOn: gridOn,
+	  gridOff: gridOff,
       toggleMonitor: toggleMonitor,
       showNotes: showNotes,
       captureTabInEditor: captureTabInEditor
@@ -208,6 +229,7 @@ function SimulatorWidget(node) {
     var pixelSize;
     var numX = 32;
     var numY = 32;
+	var img = document.getElementById("grid");
 
     function initialize() {
       var canvas = $node.find('.screen')[0];
@@ -221,13 +243,16 @@ function SimulatorWidget(node) {
     function reset() {
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, width, height);
+	  if (enableGrid) {
+		  ctx.drawImage(grid, 0, 0);
+	  }
     }
 
     function updatePixel(addr) {
       ctx.fillStyle = palette[memory.get(addr) & 0x0f];
       var y = Math.floor((addr - 0x200) / 32);
       var x = (addr - 0x200) % 32;
-      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize - enableGrid, pixelSize - enableGrid);
     }
 
     return {
