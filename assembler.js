@@ -53,8 +53,8 @@ function SimulatorWidget(node) {
     $node.find('.notesButton').click(ui.showNotes);    
     var editor = $node.find('.code');
 
-    editor.on('keypress input', simulator.stop);
-    editor.on('keypress input', ui.initialize);
+    //editor.on('keypress input', simulator.stop);
+    //editor.on('keypress input', ui.initialize);
     editor.keydown(ui.captureTabInEditor);
 
     $(document).keypress(memory.storeKeypress);
