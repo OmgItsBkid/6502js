@@ -9,4 +9,4 @@ I do not pretend to know anything about CSS, and barely anything about HTML, how
 
 Preview:
 
-![Preview of IDE](https://i.imgur.com/OPz2wlm.png)
+![Preview of IDE](https://i.imgur.com/r5VB0EO.png)
