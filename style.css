@@ -1,12 +1,13 @@
 .widget {
-  width: 1485px;
-  margin: 12px;
+  width: 1483px;
+  margin: 10px;
   font-size: 12px;
   line-height: 1.5;
 }
 
-.buttons {
-  margin: 8px 0;
+.header {
+  height: 21px;
+  padding: 8px;
 }
 
 .start, .length {
@@ -18,7 +19,6 @@
   padding: 0;
   background: inherit;
   border: none;
-  font-size: 12px;
 }
 
 .monitor pre {
@@ -38,10 +38,11 @@
 
 .screen {
   float: right;
+  clear: right;
 }
 
 .debugger {
-  margin-top: -125px;
+  margin-top: 5px;
   border: 1px black solid;
   padding: 3px;
   padding-top: 8px;
@@ -62,11 +63,10 @@
 }
 
 .monitorControls {
-  width: 425px;
-  margin-bottom: 10px;
-  margin-left: 120px;
-  padding: 0;
+  width: 436px;
   float: left;
+  margin: 0 0 10px 100px;
+  padding: 0;
   font-size: 14px;
 }
 
@@ -79,10 +79,10 @@
   border: 1px solid #999;
   background-color: #ddd;
   width: 525px;
-  height: 437px;
+  height: 537px;
   overflow: auto;
   float: left;
-  clear: both;
+  clear: left;
 }
 
 .messages {
@@ -92,10 +92,10 @@
   background-color: #eee;
   overflow: auto;
   width: 525px;
-  height: 424px;
+  height: 324px;
   text-align: left;
   font-size: 11px;
   color: #444;
   float: left;
-  clear: both;
+  clear: left;
 }
