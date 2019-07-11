@@ -230,6 +230,8 @@ function SimulatorWidget(node) {
     var numX = 32;
     var numY = 32;
 	var img = document.getElementById("grid");
+	var tooltipCanvas = document.getElementById("tooltip");
+	var tooltipCtx = tooltipCanvas.getContext("2d");
 
     function initialize() {
       var canvas = $node.find('.screen')[0];
@@ -239,6 +241,63 @@ function SimulatorWidget(node) {
       ctx = canvas.getContext('2d');
       reset();
     }
+	
+	var canvasOffset = $(".screen").offset();
+	var offsetX = canvasOffset.left;
+	var offsetY = canvasOffset.top;
+
+	$(".screen").mousemove(function (e) {
+    handleMouseMove(e);
+	});
+	
+	function handleMouseMove(e) {
+	//make mouse X and Y match canvax pixels, 1-32 instead of actual x/y coordinates which are unneeded here
+	var mouseX = Math.floor(parseInt(e.clientX - offsetX)/10);
+	var mouseY = Math.floor(parseInt(e.clientY - offsetY)/10);
+	for (var i = 0; i < pixels.length; i++) {
+		//if the mouse x/y = array x/y, grab the address
+		if ((mouseX == pixels[i].x) && (mouseY == pixels[i].y)) {
+			tooltipCanvas.style.left = (e.clientX - 10) + "px";
+			tooltipCanvas.style.top = (e.clientY - 20) + "px";
+			tooltipCtx.clearRect(0, 0, tooltipCanvas.width, tooltipCanvas.height);
+			tooltipCtx.fillText(pixels[i].address, 2, 10);
+			break; //no need to continue through the whole array if we found what we're looking for
+		}
+	}
+	if ((e.clientX < 1186) || (e.clientX > 1506) || (e.clientY < 41) || (e.clientY > 361)) {
+		tooltipCanvas.style.left = "-200px";
+	}
+}
+	
+//create array for x/y coords and corresponding addresses	
+var pixels = [];
+var xtmp = 1,ytmp = 1
+//start at 0200
+var hex1 = num2hex(2)
+var hex2 = num2hex(0)
+for (var i = 0; i < 1024; i++) {
+	pixels.push({
+		//push 1/1 $0200 through 32/32 $05ff into the array
+		x: xtmp,
+		y: ytmp,
+		address: "$" + hex1 + hex2
+	});
+	xtmp++
+	//unhex (parseInt) hex2 to increment it, then rehex (num2hex) it.
+	//this prevents issues when going past 0a (10 dec)
+	hex2 = num2hex(parseInt(hex2, 16)+1);
+	if (hex2 == "00") {
+		//increment hex1 normally as we're only going to 05
+		//and won't run into the above issue
+		hex1 = num2hex(++hex1);
+	}
+	if (xtmp > 32) {
+		//once we hit the right side of the screen (32)
+		//reset x and increment y to go to the next line
+		xtmp = 1;
+		ytmp++;
+	}
+}
 
     function reset() {
       ctx.fillStyle = "black";

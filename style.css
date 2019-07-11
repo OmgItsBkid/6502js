@@ -1,5 +1,5 @@
 .widget {
-  width: 1483px;
+  width: 1498px;
   margin: 10px;
   font-size: 12px;
   line-height: 1.5;
@@ -7,7 +7,7 @@
 
 .header {
   height: 21px;
-  padding: 8px;
+  width: 1121px;
 }
 
 .start, .length {
@@ -21,13 +21,21 @@
   border: none;
 }
 
+#tooltip {
+    background-color:white;
+    border:1px solid black;
+    position:absolute;
+    left:-200px;
+    top:100px;
+}
+
 .monitor pre {
   font-size: 17px;
 }
 
 .code {
-  margin: 2px 5px 0 0;
   padding: 6px;
+  margin-top: 10px;
   border: 1px solid black;
   width: 600px;
   height: 880px;
@@ -39,12 +47,12 @@
 .screen {
   float: right;
   clear: right;
+  padding: 10px;
 }
 
 .debugger {
-  margin-top: 5px;
   border: 1px black solid;
-  padding: 3px;
+  padding: 8px;
   padding-top: 8px;
   height: 185px;
   width: 312px;
@@ -59,13 +67,13 @@
   margin-top: 6px;
   padding: 0;
   font-family: monospace;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .monitorControls {
-  width: 436px;
+  width: 277px;
   float: left;
-  margin: 0 0 10px 100px;
+  margin: 0 160px 0 108px;
   padding: 0;
   font-size: 14px;
 }
@@ -75,6 +83,7 @@
 }
 
 .monitor {
+  margin-top: 10px;
   padding: 6px;
   border: 1px solid #999;
   background-color: #ddd;
